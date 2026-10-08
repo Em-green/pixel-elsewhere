@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PIXEL ELSEWHERE — Find the pixel that doesn't belong</title>
+<meta name="description" content="Find the pixels that don't belong. Twenty levels of tiny defects, moving patterns, noise and photographs. Use the 8× scope to place your click.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23141619'/%3E%3Cpath fill='%232d58ff' d='M6 6h8v8H6zM18 6h8v8h-8zM6 18h8v8H6z'/%3E%3Crect x='22' y='22' width='4' height='4' fill='%23b9ff72'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/forest.jpg" as="image"><link rel="preload" href="assets/city.jpg" as="image">
+<link rel="stylesheet" href="style.css">
+<script src="engine.js" defer></script><script src="renderer.js" defer></script><script src="audio.js" defer></script><script src="game.js" defer></script>
+</head>
+<body>
+<div class="app">
+<header><div class="brand"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i></span><span>PIXEL ELSEWHERE<span class="brand-sub">Find the pixel that doesn't belong.</span></span></div><div class="header-actions"><button id="sound" class="sound-button" aria-pressed="true" aria-label="Sound on. Click to mute sound effects.">Sound on</button><button id="restart" class="quiet">Start over</button></div></header>
+<main>
+<section class="stage-heading" aria-label="Current level"><div class="level-block"><span class="eyebrow">LEVEL</span><strong id="level">01</strong><span class="total">/ 20</span></div><div class="stage-name"><span id="difficulty" class="tag">WARM-UP</span><h1 id="stageTitle">The first imperfection.</h1><p id="stageDescription">Find the odd square. Click it to repair the screen.</p></div><div class="stats"><div><span>FOUND</span><strong><b id="found">0</b><small> / </small><b id="targetCount">1</b></strong></div><div><span>TIME</span><strong id="timer">00:00</strong></div><div><span>MISSES</span><strong id="misses">0</strong></div></div></section>
+<div class="level-track" id="levelTrack" aria-label="Progress through twenty levels"></div>
+<div class="workspace">
+<section class="monitor" aria-label="Pixel search area"><div class="monitor-top"><span><span class="tiny-square"></span> TEST AREA</span><div class="monitor-tools"><button id="motion" class="motion-button" aria-pressed="false" disabled>Static background</button><span id="pixelInfo">14 × 14 px</span></div></div><div class="screen-wrap"><canvas id="screen" width="960" height="540" tabindex="0" role="application" aria-label="Keep a defective pixel inside the aiming circle, then click. Arrow keys move the aim; Shift moves one pixel; Enter selects."></canvas><div id="markers" class="markers" aria-hidden="true"></div><div id="aimCircle" class="click-circle" aria-hidden="true" hidden></div><div id="complete" class="complete" hidden><div><span id="completeLabel" class="eyebrow">LEVEL CLEAR</span><h2 id="completeTitle">One pixel found.</h2><p id="completeText"></p><button id="next" class="primary">Next level</button></div></div></div><div class="monitor-bottom"><span id="screenMode">Keep a defect inside the circle, then click</span><span id="coordinates">X — &nbsp; Y —</span></div><div class="game-actions"><button id="hint" class="hint-button"><span class="hint-icon" aria-hidden="true">?</span> Hint <span id="hintCount">0 used</span></button><span class="hint-description">Reveal an area. Keep the discovery.</span></div></section>
+<aside class="inspector"><div class="inspector-heading"><span class="eyebrow">PIXEL SCOPE</span><span class="zoom">8×</span></div><h2>Inside the circle? Click.</h2><div class="lens-wrap"><canvas id="lens" width="256" height="256" tabindex="0" role="application" aria-label="Eight-times magnifier. Click or drag inside the scope to adjust the circle. Any defect touching the circle counts."></canvas><div id="lensCursor" aria-hidden="true"></div></div><button id="precision" class="secondary" aria-pressed="false">Pin & zoom</button><button id="confirm" class="primary" disabled>Click this spot</button><p id="lensHelp">Keep a defect inside the circle to repair it. Use “Pin & zoom” for a closer look.</p></aside>
+</div>
+<div class="message-bar"><span id="feedback" role="status" aria-live="polite">Ready when you are. Look for the square that doesn't belong.</span><span class="no-limit">No time limit</span></div>
+<div class="instructions"><span><b>01</b> Find a defect</span><span><b>02</b> Click to repair</span><span><b>03</b> Clear the screen</span></div>
+</main>
+<footer><span>PIXEL ELSEWHERE</span><span>All pixel defects are part of the game. Photo backgrounds are AI-generated.</span><span>20 LEVELS · ONE GOOD EYE</span></footer>
+</div>
+</body></html>
