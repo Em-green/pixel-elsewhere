@@ -52,10 +52,10 @@ function attempt(x,y,precise=false){
 }
 function finishLevel(){
  clear=true;$('aimCircle').hidden=true;stopClock();$('timer').textContent=time(elapsed);$('confirm').disabled=true;$('hint').disabled=true;$('precision').disabled=true;$('motion').disabled=true;$('complete').hidden=false;
- const last=index===E.levels.length-1;$('completeLabel').textContent=last?'ALL PIXELS FOUND':'LEVEL CLEAR';
- $('completeTitle').textContent=last?'Nothing out of place.':index===0?'One pixel found.':'Screen repaired.';
+ const last=index===E.levels.length-1;$('completeLabel').textContent=last?'ALL 20 LEVELS COMPLETE':'LEVEL CLEAR';
+ $('completeTitle').textContent=last?'GAME CLEAR':index===0?'One pixel found.':'Screen repaired.';
  $('completeText').textContent=last?'All '+E.levels.length+' levels · '+time(elapsed)+' · '+misses+' misses · '+hints+' hints':'Level '+String(index+1).padStart(2,'0')+' complete. Ready for a closer look?';
- $('next').textContent=last?'Play again':'Next level';message(last?'Every last pixel. Well spotted.':'All defects found. Continue when you are ready.','hit');$('next').focus({preventScroll:true});track();
+ $('next').textContent=last?'Start again from level 1':'Next level';message(last?'GAME CLEAR! Every last pixel found. Well spotted.':'All defects found. Continue when you are ready.','hit');$('next').focus({preventScroll:true});track();
 }
 function track(){
  $('levelTrack').replaceChildren();E.levels.forEach((_,i)=>{const n=document.createElement('span');n.className=i<index||i===index&&clear?'done':i===index?'current':'';n.setAttribute('aria-label','Level '+(i+1)+(i<index||i===index&&clear?' complete':i===index?' playing':''));$('levelTrack').appendChild(n);});
@@ -88,7 +88,8 @@ function togglePrecision(){
 }
 function showHint(){
  if(clear||renderState==='loading')return;startClock();hints++;$('hintCount').textContent=hints+' used';clearTimeout(hintTimer);const old=$('markers').querySelector('.hint-marker');if(old)old.remove();
- const t=stage.targets.find(t=>!t.found),m=document.createElement('div');m.className='hint-marker';m.style.left=((t.x+t.size/2+14)/E.W*100)+'%';m.style.top=((t.y+t.size/2-12)/E.H*100)+'%';$('markers').appendChild(m);hintTimer=setTimeout(()=>m.remove(),4500);if(!precision)togglePrecision();updatePosition(t.x+t.size/2+8,t.y+t.size/2-6,true);message('A defect is inside the dashed circle. The scope is pinned nearby.');
+ if(precision)togglePrecision();
+ const t=stage.targets.find(t=>!t.found),m=document.createElement('div');m.className='hint-marker';m.style.left=((t.x+t.size/2+14)/E.W*100)+'%';m.style.top=((t.y+t.size/2-12)/E.H*100)+'%';$('markers').appendChild(m);hintTimer=setTimeout(()=>m.remove(),4500);message('A defect is inside the circle. You can click while it fades.');
 }
 screen.addEventListener('pointerdown',ev=>{touchAim=ev.pointerType==='touch'||coarsePointer.matches;if(!clear&&!precision){const p=screenPoint(ev);updatePosition(p.x,p.y);}});
 screen.addEventListener('pointerleave',()=>{if(!precision)$('aimCircle').hidden=true;});
